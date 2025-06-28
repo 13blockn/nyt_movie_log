@@ -3,6 +3,7 @@ export interface Movie {
   title: string;
   year: number;
   director: string;
+  description: string;
   posterUrl?: string; // Optional poster image URL from TMDb
 }
 

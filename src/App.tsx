@@ -54,6 +54,7 @@ function App() {
     <div className="app">
       <header className="app-header">
         <h1>NYTimes 100 Best Movies of the 21st Century</h1>
+        <h2><i>(I built this in an hour with Cursor, so pardon the AI slop)</i></h2>
         <div className="header-stats">
           <div className="seen-counter">
             Seen: {seenCount} / {movies.length}
