@@ -19,6 +19,7 @@ export const MovieCard = ({
   return (
     <div className="movie-card">
       <div className="movie-poster">
+        <div className="rank-overlay">{movie.id}</div>
         <img
           src={posterUrl || fallbackPoster}
           alt={`${movie.title} poster`}
