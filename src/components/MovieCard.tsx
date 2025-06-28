@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { Movie } from "../types";
-import { Modal } from "./Modal";
+import { MovieDetailsModal } from "./MovieDetailsModal";
 
 interface MovieCardProps {
   movie: Movie;
@@ -49,7 +49,7 @@ export const MovieCard = ({
         </div>
       </div>
 
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+      <MovieDetailsModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <div className="movie-modal">
           <div className="movie-modal-image">
             <img
@@ -78,7 +78,7 @@ export const MovieCard = ({
             </div>
           </div>
         </div>
-      </Modal>
+      </MovieDetailsModal>
     </>
   );
 };
