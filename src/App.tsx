@@ -65,11 +65,11 @@ function App() {
       <div className="controls">
         <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
         <FilterButtons currentFilter={filter} onFilterChange={setFilter} />
-        {Object.keys(posters).length > 0 && (
+        {/* {Object.keys(posters).length > 0 && (
           <button onClick={clearCache} className="clear-cache-btn">
             Refresh Posters
           </button>
-        )}
+        )} */}
       </div>
 
       <main className="movies-grid">
