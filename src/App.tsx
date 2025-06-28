@@ -5,12 +5,16 @@ import { MovieCard } from './components/MovieCard';
 import { SearchBar } from './components/SearchBar';
 import { FilterButtons } from './components/FilterButtons';
 import { useLocalStorage } from './hooks/useLocalStorage';
+import { useMoviePosters } from './hooks/useMoviePosters';
 import './App.css';
 
 function App() {
   const [movieStatus, setMovieStatus] = useLocalStorage<MovieStatus>('nyt-movies-seen', {});
   const [searchTerm, setSearchTerm] = useState('');
   const [filter, setFilter] = useState<FilterType>('all');
+
+  // Load movie posters
+  const { posters, loading, loadedCount, totalCount, clearCache } = useMoviePosters(movies);
 
   const toggleMovieSeen = (movieId: number) => {
     setMovieStatus({
@@ -25,7 +29,8 @@ function App() {
     // Filter by search term
     if (searchTerm) {
       filtered = filtered.filter(movie =>
-        movie.title.toLowerCase().includes(searchTerm.toLowerCase())
+        movie.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        movie.director.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
 
@@ -45,8 +50,15 @@ function App() {
     <div className="app">
       <header className="app-header">
         <h1>NYTimes 100 Best Movies of the 21st Century</h1>
-        <div className="seen-counter">
-          Seen: {seenCount} / {movies.length}
+        <div className="header-stats">
+          <div className="seen-counter">
+            Seen: {seenCount} / {movies.length}
+          </div>
+          {loading && (
+            <div className="poster-progress">
+              Loading posters: {loadedCount} / {totalCount}
+            </div>
+          )}
         </div>
       </header>
 
@@ -62,6 +74,7 @@ function App() {
             movie={movie}
             isSeen={!!movieStatus[movie.id]}
             onToggleSeen={toggleMovieSeen}
+            posterUrl={posters[movie.id]}
           />
         ))}
       </main>
