@@ -14,7 +14,7 @@ function App() {
   const [filter, setFilter] = useState<FilterType>('all');
 
   // Load movie posters
-  const { posters, loading, loadedCount, totalCount, clearCache } = useMoviePosters(movies);
+  const { posters, loading, loadedCount, totalCount } = useMoviePosters(movies);
 
   const toggleMovieSeen = (movieId: number) => {
     setMovieStatus({
