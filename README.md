@@ -39,9 +39,9 @@ cd nyt_movie_log
 npm install
 ```
 
-3. Start the development server:
+3. Start the development server: (Until I properly install node 22 on my full machine)
 ```bash
-npm run dev
+export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && npm run dev
 ```
 
 4. Open your browser and navigate to `http://localhost:5173`

@@ -243,3 +243,20 @@
     justify-content: center;
   }
 }
+
+/* Clear Cache Button */
+.clear-cache-btn {
+  padding: 8px 16px;
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #6c757d;
+  transition: all 0.2s ease;
+}
+
+.clear-cache-btn:hover {
+  background: #e9ecef;
+  color: #495057;
+}
