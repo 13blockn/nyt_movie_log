@@ -15,4 +15,4 @@ export const SearchBar = ({ searchTerm, onSearchChange }: SearchBarProps) => {
       />
     </div>
   );
-}; 
+};

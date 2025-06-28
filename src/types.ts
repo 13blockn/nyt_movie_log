@@ -10,4 +10,4 @@ export interface MovieStatus {
   [movieId: number]: boolean;
 }
 
-export type FilterType = 'all' | 'seen' | 'unseen'; 
+export type FilterType = "all" | "seen" | "unseen";

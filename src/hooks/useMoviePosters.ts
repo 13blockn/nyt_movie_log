@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { searchMovieOnTMDb } from '../services/tmdbService';
-import type { Movie } from '../types';
+import { useState, useEffect } from "react";
+import { searchMovieOnTMDb } from "../services/tmdbService";
+import type { Movie } from "../types";
 
 export const useMoviePosters = (movies: Movie[]) => {
   const [posters, setPosters] = useState<Record<number, string>>({});
@@ -11,7 +11,7 @@ export const useMoviePosters = (movies: Movie[]) => {
   const loadPosters = async (forceRefetch = false) => {
     // Check if we already have posters cached in localStorage
     if (!forceRefetch) {
-      const cachedPosters = localStorage.getItem('movie-posters');
+      const cachedPosters = localStorage.getItem("movie-posters");
       if (cachedPosters) {
         try {
           const parsed = JSON.parse(cachedPosters);
@@ -19,7 +19,7 @@ export const useMoviePosters = (movies: Movie[]) => {
           setLoadedCount(Object.keys(parsed).length);
           return;
         } catch (error) {
-          console.error('Error parsing cached posters:', error);
+          console.error("Error parsing cached posters:", error);
         }
       }
     }
@@ -35,13 +35,13 @@ export const useMoviePosters = (movies: Movie[]) => {
         const posterUrl = await searchMovieOnTMDb(movie.title, movie.year);
         if (posterUrl) {
           newPosters[movie.id] = posterUrl;
-          setPosters(prev => ({ ...prev, [movie.id]: posterUrl }));
+          setPosters((prev) => ({ ...prev, [movie.id]: posterUrl }));
         }
         count++;
         setLoadedCount(count);
 
         // Small delay to be respectful to the API
-        await new Promise(resolve => setTimeout(resolve, 100));
+        await new Promise((resolve) => setTimeout(resolve, 100));
       } catch (error) {
         console.error(`Failed to load poster for ${movie.title}:`, error);
         count++;
@@ -50,7 +50,7 @@ export const useMoviePosters = (movies: Movie[]) => {
     }
 
     // Cache the results
-    localStorage.setItem('movie-posters', JSON.stringify(newPosters));
+    localStorage.setItem("movie-posters", JSON.stringify(newPosters));
     setLoading(false);
   };
 
@@ -64,7 +64,7 @@ export const useMoviePosters = (movies: Movie[]) => {
   }, [movies, shouldRefetch]);
 
   const clearCacheAndRefetch = () => {
-    localStorage.removeItem('movie-posters');
+    localStorage.removeItem("movie-posters");
     setPosters({});
     setLoadedCount(0);
     setShouldRefetch(true);
@@ -75,6 +75,6 @@ export const useMoviePosters = (movies: Movie[]) => {
     loading,
     loadedCount,
     totalCount: movies.length,
-    clearCache: clearCacheAndRefetch
+    clearCache: clearCacheAndRefetch,
   };
-}; 
+};
